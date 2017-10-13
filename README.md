@@ -20,9 +20,9 @@
   1. 运行时向用户请求**读权限**，如果获得授权，则属于同一权限组的**写权限**会自动获得授权，直接检查其状态为 PERMISSION_GRANTED
   2. 但官方表示权限组的内容可能会有变动，因此在使用时不能做**某几个权限一直属于同一权限组**的假设。也就是**当请求读权限并获得授权时，仍然需要判断写权限的状态并决定是否需要请求，不可直接使用写权限。**
 - 非常规情况：manifest 文件中**只声明**了读权限（READ_EXTERNAL_STORAGE）
-  1. 运行时向用户请求**读权限**并获得授权，当再次请求**写权限（没有在 manifest 中声明）**时，在 onRequestPermissionsResult() 回调中直接收到未授权的结果（不与用户交互）。
+  1. 运行时向用户请求**读权限**并获得授权，当再次请求 **写权限（没有在 manifest 中声明）** 时，在 onRequestPermissionsResult() 回调中直接收到未授权的结果（不与用户交互）。
   2. 在 manifest 中**增加写权限的声明**并覆盖安装后，写权限的状态依然为未授权，需要重新请求。当调用 ActivityCompat.requestPermissions() 时会弹出对话框由用户决定是否授予权限。
-  3. 当再次从 manifest 中移除写权限的声明后，写权限的状态再次回到未授权状态。这也证明**“动态申请的权限必须在 manifest 中声明”**。
+  3. 当再次从 manifest 中移除写权限的声明后，写权限的状态再次回到未授权状态。这也证明 **“动态申请的权限必须在 manifest 中声明”** 。
 
 
 
@@ -54,7 +54,7 @@
 
 
 
-##### GitHub Library：
+##### 相关 Library：
 
 [HeiPermission](https://github.com/forJrking/HeiPermission)
 
